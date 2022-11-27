@@ -1,36 +1,45 @@
 import PropTypes from 'prop-types';
+import {
+  TableOfTransactionHistory,
+  TableHead,
+  TableHeadRow,
+  TableHeadCell,
+  TableBody,
+  TableRow,
+  TableCell,
+} from './TransactionHistory.styled';
 
-export const TransactionHistory = ( { items }) => {
-    return (
-        <table className="transaction-history">
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    <th>Currency</th>
-                </tr>
-            </thead>
+export const TransactionHistory = ({ items }) => {
+  return (
+    <TableOfTransactionHistory>
+      <TableHead>
+        <TableHeadRow>
+          <TableHeadCell>Type</TableHeadCell>
+          <TableHeadCell>Amount</TableHeadCell>
+          <TableHeadCell>Currency</TableHeadCell>
+        </TableHeadRow>
+      </TableHead>
 
-            <tbody>
-                { items.map( ({ id, type, amount, currency}) => (
-                    <tr key={id}>
-                        <td>{type}</td>
-                        <td>{amount}</td>
-                        <td>{currency}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    )
-}
+      <TableBody>
+        {items.map(({ id, type, amount, currency }) => (
+          <TableRow key={id}>
+            <TableCell>{type}</TableCell>
+            <TableCell>{amount}</TableCell>
+            <TableCell>{currency}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </TableOfTransactionHistory>
+  );
+};
 
 TransactionHistory.propTypes = {
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired,
-            amount: PropTypes.string.isRequired,
-            currency: PropTypes.string.isRequired,
-        })
-    )
-}
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+      currency: PropTypes.string.isRequired,
+    })
+  ),
+};
